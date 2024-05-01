@@ -16,6 +16,14 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         public string Name { get; set; }
         public double Price { get; set; }
         public int Quantity { get; set; }
+
+        enum Category{
+            office,
+            kids,
+            clothing,
+            electronics
+
+        }
         public Product(string name, double price, int quantity)
         {
             Name = name;
