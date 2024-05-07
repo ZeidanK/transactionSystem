@@ -55,22 +55,22 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
                 }
                 case 4:{
 
-
+                    res=AddProductToCart();
                     break;
                 }
                 case 5:{
-
+                    res=PayForOrder();
 
                     break;
                 }
                 case 6:{
 
-
+                    res=DisplayAllBuyers();
                     break;
                 }
                 case 7:{
 
-
+                    res=DisplayAllSellers();
                     break;
                 }
                 case 8:{

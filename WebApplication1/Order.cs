@@ -17,7 +17,4 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
 
 
     }
-
-        
-
 }    
