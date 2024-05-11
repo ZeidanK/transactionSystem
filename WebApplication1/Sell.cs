@@ -14,7 +14,26 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
 {
     internal class Seller{  
         User user;
-        Product[] pruductArray;
+        Product[] productArray;
+
+    public Seller(User user, Product[] productArray) {
+        this.user = user;
+        this.productArray = productArray;
+    }
+
+    // Getters and Setters
+    public User User {
+        get { return user; }
+        set { user = value; }
+    }
+
+    public Product[] ProductArray {
+        get { return productArray; }
+        set { productArray = value; }
+    }
+    public void DisplaySeller(){
+        this.user.DisplayUser();
+    }
 
 
     }

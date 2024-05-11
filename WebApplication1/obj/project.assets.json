@@ -8,19 +8,23 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\root\\.nuget\\packages\\": {}
+    "C:\\Users\\GOD\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\root\\Desktop\\ruppin CS 2024\\sem2\\C#(3)\\project\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\GOD\\Documents\\transactionSystem\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "C:\\Users\\root\\Desktop\\ruppin CS 2024\\sem2\\C#(3)\\project\\WebApplication1\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\root\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\root\\Desktop\\ruppin CS 2024\\sem2\\C#(3)\\project\\WebApplication1\\obj\\",
+      "projectPath": "C:\\Users\\GOD\\Documents\\transactionSystem\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\GOD\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\GOD\\Documents\\transactionSystem\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\root\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GOD\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -69,7 +73,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.203/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

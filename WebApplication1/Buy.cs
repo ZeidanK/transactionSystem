@@ -16,6 +16,40 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         User user;
         Product[] CartArray;
 
+
+    public Buyer(User user, Product[] cartArray) {
+        this.user = user;
+        this.CartArray = cartArray;
+    }
+
+    public User GetUser() {
+        return this.user;
+    }
+
+    public void SetUser(User user) {
+        this.user = user;
+    }
+
+    public Product[] GetCartArray() {
+        return this.CartArray;
+    }
+
+    public void SetCartArray(Product[] cartArray) {
+        this.CartArray = cartArray;
+    }
+    public void DisplayBuyer(){
+        this.user.DisplayUser();
+    }
+
+
+
+
+
+
+
+
+
+
     }
 
       

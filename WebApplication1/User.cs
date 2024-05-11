@@ -42,7 +42,9 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
             this.SetPassword(password);
             this.SetUserAddress(address);
         }
-
+        public void DisplayUser(){
+            Console.WriteLine("User Name: "+this.UserName);
+        }
 
     }
        
