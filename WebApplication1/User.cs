@@ -36,12 +36,25 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         public string getUserName(){return this.UserName;}
         public string getPassword(){return this.Password;}
         public Address getUserAddress(){return this.UserAddress;}
-
-        public User(string name, string password, Address address){//no error checking
-            this.SetUserName(name);
-            this.SetPassword(password);
-            this.SetUserAddress(address);
+        public User(){
+            this.UserName="default";
+            this.Password="default";
+            this.UserAddress=new Address("default","default",0,"default");
         }
+
+        // public User(string name, string password, Address address){//no error checking
+        //     if(!this.SetUserName(name)||!this.SetPassword(password)||!this.SetUserAddress(address)){
+        //         Console.WriteLine("Error in setting user information");
+                
+
+        //     }
+            
+        // }
+        public User(string name, string password, Address address) {
+    this.UserName = name;
+    this.Password = password;
+    this.UserAddress = new Address(address.Street, address.City, address.BuildingNumber, address.Country);
+}
         public void DisplayUser(){
             Console.WriteLine("User Name: "+this.UserName);
         }

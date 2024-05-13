@@ -12,116 +12,108 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 namespace ConsoleApp1//the name of the project that contains the namespace information must be the same as the project name
 {
     internal class Program{  
-        public static Address GetAddressFromUser()
-    {
-        Console.Write("Enter Street: ");
-        string street = Console.ReadLine();
-
-        Console.Write("Enter City: ");
-        string city = Console.ReadLine();
-
-        Console.Write("Enter Building Number: ");
-        int buildingNumber = Convert.ToInt32(Console.ReadLine());
-
-        Console.Write("Enter Country: ");
-        string country = Console.ReadLine();
-
-        return new Address(street, city, buildingNumber, country);
-    }
-
-        public static Buyer GetBuyerFromUser() {
-        User user = GetUserFromUser();
-
-        Console.Write("Enter number of products: ");
-        int numProducts = Convert.ToInt32(Console.ReadLine());
-
-        Product[] cartArray = new Product[numProducts];
-        for (int i = 0; i < numProducts; i++) {
-            Console.WriteLine($"Enter information for product {i + 1}:");
-            cartArray[i] = GetProductFromUser();
+        public static Address GetAddressFromUser(){
+            Console.Write("Enter Street: ");
+            string? street = Console.ReadLine();
+            Console.Write("Enter City: ");
+            string? city = Console.ReadLine();
+            Console.Write("Enter Building Number: ");
+            int buildingNumber = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Country: ");
+            string? country = Console.ReadLine();
+            return new Address(street!, city!, buildingNumber, country!);
         }
 
-        return new Buyer(user, cartArray);
-    }
-        public static User GetUserFromUser()
-    {
-        Console.Write("Enter User Name: ");
-        string userName = Console.ReadLine();
-
-        Console.Write("Enter Password: ");
-        string password = Console.ReadLine();
-
-        Console.WriteLine("Enter Address Information: ");
-        Address address = GetAddressFromUser();
-
-        return new User(userName, password, address);
-    }
+        public static Buyer GetBuyerFromUser() {
+            User user = GetUserFromUser();
+            return new Buyer(user);
+        }
+        public static User GetUserFromUser(){
+            Console.Write("Enter User Name: ");
+            string? userName = Console.ReadLine();
+            Console.Write("Enter Password: ");
+            string? password = Console.ReadLine();
+            Console.WriteLine("Enter Address Information: ");
+            Address address = GetAddressFromUser();
+            return new User(userName!, password!, address);
+        }
         public static Seller GetSellerFromUser() {
             User user = GetUserFromUser();
             Console.Write("Enter number of products: ");
             int numProducts = Convert.ToInt32(Console.ReadLine());
-
             Product[] productArray = new Product[numProducts];
             for (int i = 0; i < numProducts; i++) {
                 Console.WriteLine($"Enter information for product {i + 1}:");
                 productArray[i] = GetProductFromUser();
             }
-
             return new Seller(user, productArray);
         }
         public static Product GetProductFromUser() {
-        Console.Write("Enter Product Name: ");
-        string name = Console.ReadLine();
-
-        Console.Write("Enter Product Price: ");
-        double price = Convert.ToDouble(Console.ReadLine());
-
-        Console.Write("Enter Product Quantity: ");
-        int quantity = Convert.ToInt32(Console.ReadLine());
-
-        Console.Write("Enter Product Category (office, kids, clothing, electronics): ");
-        string category = Console.ReadLine();
-
-        return new Product(name, price, quantity, category);
-    }
+            Console.Write("Enter Product Name: ");
+            string name = Console.ReadLine();
+            Console.Write("Enter Product Price: ");
+            double price = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Enter Product Quantity: ");
+            int quantity = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter Product Category (office, kids, clothing, electronics): ");
+            string category = Console.ReadLine();
+            return new Product(name, price, quantity, category);
+        }
         
         public static Seller[] AddSellerToArray(Seller[] sellers, Seller newSeller) {
-        Seller[] newSellers = new Seller[sellers.Length + 1];
-        for (int i = 0; i < sellers.Length; i++) {
-            newSellers[i] = sellers[i];
+            Seller[] newSellers = new Seller[sellers.Length + 1];
+            for (int i = 0; i < sellers.Length; i++) {
+                newSellers[i] = sellers[i];
+            }
+            newSellers[sellers.Length] = newSeller;
+            return newSellers;
         }
-        newSellers[sellers.Length] = newSeller;
-        return newSellers;
-    }
         public static int ChooseSeller(Seller[] sellers) {
             for (int i = 0; i < sellers.Length; i++) {
                 Console.Write($"{i + 1}. ");
                 sellers[i].DisplaySeller();
             }
-
             Console.Write("Enter the number of the seller you choose: ");
             int chosenSellerIndex = Convert.ToInt32(Console.ReadLine()) - 1;
-
             return chosenSellerIndex;
         }
-        public static Buyer[] AddBuyerToArray(Buyer[] buyers, Buyer newBuyer) {
-        Buyer[] newBuyers = new Buyer[buyers.Length + 1];
-        for (int i = 0; i < buyers.Length; i++) {
-            newBuyers[i] = buyers[i];
+        public static int ChooseProduct(Seller[] sellers, int sellerIndex) {
+            for (int i = 0; i < sellers[sellerIndex].ProductArray.Length; i++) {
+                Console.Write($"{i + 1}. ");
+                sellers[sellerIndex].GetProductArray()[i].DisplayProduct();
+
+            }
+            Console.Write("Enter the number of the product you choose: ");
+            int chosenProductIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+            return chosenProductIndex;
         }
-        newBuyers[buyers.Length] = newBuyer;
-        return newBuyers;
-    }
+        public static int ChooseBuyer(Buyer[] buyers) {
+            for (int i = 0; i < buyers.Length; i++) {
+                Console.Write($"{i + 1}. ");
+                buyers[i].DisplayBuyer();
+            }
+            Console.Write("Enter the number of the buyer you choose: ");
+            int chosenBuyerIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+            return chosenBuyerIndex;
+        }        
+        public static Buyer[] AddBuyerToArray(Buyer[] buyers, Buyer newBuyer) {
+            Buyer[] newBuyers = new Buyer[buyers.Length + 1];
+            for (int i = 0; i < buyers.Length; i++) {
+                newBuyers[i] = buyers[i];
+            }
+            newBuyers[buyers.Length] = newBuyer;
+            return newBuyers;
+        }
         public static bool AddBuyer(ref Buyer[] buyers){
             Buyer buyer=GetBuyerFromUser();
             buyers=AddBuyerToArray(buyers,buyer);
             return true;
-            }
+        }
         public static bool AddSeller(ref Seller[] sellers){
             Seller seller=GetSellerFromUser();
             sellers=AddSellerToArray(sellers,seller);
             return true;        
-}
+        }
         public static bool AddProductToSeller(ref Seller seller) {
             Product newProduct = GetProductFromUser();
              Product[] newProductArray = new Product[seller.ProductArray.Length + 1];
@@ -130,32 +122,26 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
             }
             newProductArray[newProductArray.Length - 1] = newProduct;
             seller.ProductArray = newProductArray;
-
             return true;   
         }
-        public static bool AddProductToCart(){return false;}
-        public static bool AddProductToCart(ref Buyer buyer) {
-    Product newProduct = GetProductFromUser();
-
-    // Create a new array with an extra slot for the new product
-    Product[] newCart = new Product[buyer.Cart.Length + 1];
-
-    // Copy the old cart to the new cart
-    for (int i = 0; i < buyer.Cart.Length; i++) {
-        newCart[i] = buyer.Cart[i];
-    }
-
-    // Add the new product to the last slot of the new cart
-    newCart[newCart.Length - 1] = newProduct;
-
-    // Replace the old cart with the new cart
-    buyer.Cart = newCart;
-
-    return true;
-}
-        public static bool PayForOrder(){return false;}
-        public static bool DisplayAllBuyers(){return false;}
-        public static bool DisplayAllSellers(){return false;}
+        public static bool AddProductToCart(ref Buyer buyer,ref Product newProduct) {
+            buyer.AddProductToCart(newProduct);
+            return true;
+        }
+        public static bool PayForOrder(Buyer buyer){
+            return buyer.ArchiveOrder();    
+        }
+        public static void DisplayAllBuyers(Buyer[] buyers){
+            for (int i = 0; i < buyers.Length; i++) {
+                buyers[i].DisplayBuyer();
+            }
+        }    
+        public static void DisplayAllSellers(Seller[] sellers){
+            for (int i = 0; i < sellers.Length; i++) {
+                sellers[i].DisplaySeller();
+            }  
+        }
+        
         public static bool DisplayAllProducts(){return false;}
         public static bool DisplayAllProductsInSeller(){return false;}
         public static int  PrintMenu(){
@@ -169,7 +155,8 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
             System.Console.WriteLine("6) Display All Buyers");
             System.Console.WriteLine("7) Display all Sellers ");
             System.Console.WriteLine("8) Exit ");
-            return(int.Parse(Console.ReadLine()));
+            
+            return Convert.ToInt32(Console.ReadLine());
             
         }
         public  static bool RunInput(ref Buyer[] buyers, ref Seller[] sellers){
@@ -193,28 +180,28 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
                 }
                 case 4:{
 
-                    res=AddProductToCart();
+                    res=AddProductToCart(ref buyers[ChooseBuyer(buyers)], ref sellers[ChooseSeller(sellers)].GetProductArray()[ChooseProduct(sellers,ChooseSeller(sellers))]);
                     break;
                 }
                 case 5:{
-                    res=PayForOrder();
+                    res=PayForOrder(buyers[ChooseBuyer(buyers)]);
 
                     break;
                 }
                 case 6:{
 
-                    res=DisplayAllBuyers();
+                    res=true;
+                    DisplayAllBuyers(buyers);
                     break;
                 }
                 case 7:{
 
-                    res=DisplayAllSellers();
+                    res=true;
+                    DisplayAllSellers(sellers);
                     break;
                 }
                 case 8:{
                     return false;
-
-                    break;
                 }
                 
 
