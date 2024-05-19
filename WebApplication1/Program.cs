@@ -69,10 +69,15 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
             return newSellers;
         }
         public static int ChooseSeller(Seller[] sellers) {
+            if (sellers.Length == 0) {
+                Console.WriteLine("No sellers to choose from.");
+                return -1;
+            }
             for (int i = 0; i < sellers.Length; i++) {
                 Console.Write($"{i + 1}. ");
                 sellers[i].DisplaySeller();
             }
+            
             Console.Write("Enter the number of the seller you choose: ");
             int chosenSellerIndex = Convert.ToInt32(Console.ReadLine()) - 1;
             return chosenSellerIndex;
@@ -162,6 +167,8 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         public  static bool RunInput(ref Buyer[] buyers, ref Seller[] sellers){
             int Input=PrintMenu();
             bool res;
+            int indexSeller=0,indexBuyer=0,indexProduct=0;
+            
             switch (Input){
                 case 1:{
                     res=(bool)AddBuyer(ref buyers);
@@ -174,17 +181,31 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
                     break;
                 }
                 case 3:{
-                    res=AddProductToSeller(ref sellers[ChooseSeller(sellers)]);
+                    indexSeller=ChooseSeller(sellers);
+                    if(indexSeller==-1)
+                        return true;
+                    res=AddProductToSeller(ref sellers[indexSeller]);
 
                     break;
                 }
                 case 4:{
-
-                    res=AddProductToCart(ref buyers[ChooseBuyer(buyers)], ref sellers[ChooseSeller(sellers)].GetProductArray()[ChooseProduct(sellers,ChooseSeller(sellers))]);
+                    indexBuyer=ChooseBuyer(buyers);
+                    if(indexBuyer==-1)
+                        return true;
+                    indexSeller=ChooseSeller(sellers);
+                    if(indexSeller==-1)
+                        return true;
+                    indexProduct=ChooseProduct(sellers,indexSeller);
+                    if(indexProduct==-1)
+                        return true;
+                    res=AddProductToCart(ref buyers[indexBuyer], ref sellers[indexSeller].GetProductArray()[indexProduct]);
                     break;
                 }
                 case 5:{
-                    res=PayForOrder(buyers[ChooseBuyer(buyers)]);
+                    indexBuyer=ChooseBuyer(buyers);
+                    if(indexBuyer==-1)
+                        return true;
+                    res=PayForOrder(buyers[indexBuyer]);
 
                     break;
                 }

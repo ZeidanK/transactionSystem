@@ -18,6 +18,8 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         
 
     public Seller(User user, Product[] productArray) {
+        this.productArray=new Product[0]    ;//just moving bug
+        
         this.user = user;
         this.SetProductArray(productArray);
     }
@@ -63,9 +65,11 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         this.user.DisplayUser();
     }
     public void DisplayProducts(){
-        foreach(Product product in productArray){
+        if(productArray.Length==0)
+            Console.WriteLine("No products to display");      
+        foreach(Product product in productArray)
             Console.WriteLine("Product Name: "+product.GetName());
-        }
+        
 
 
     }

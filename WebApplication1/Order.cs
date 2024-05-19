@@ -62,7 +62,14 @@ namespace ConsoleApp1//the name of the project that contains the namespace infor
         this.numberOfProducts = numberOfProducts;
     }
     public void DisplayOrder(){
+        System.Console.WriteLine("Order Information: ");
+        System.Console.WriteLine("Total Price: "+this.totalPrice);
+        System.Console.WriteLine("Number of Products: "+this.numberOfProducts);
+        
         this.buyer.DisplayUser();
+        foreach(Product product in products){
+            product.DisplayProduct();
+        }
     }
 
 
